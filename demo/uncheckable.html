@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>uncheckable.js</title>
+    <script src="../src/uncheckable.js"></script>
+    <script>
+        
+        'use strict';
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            var radios = document.querySelectorAll('input[type="radio"]');
+            
+            Array.prototype.forEach.call(radios, function (el) {
+                el.uncheckable = true;
+            });
+            
+        }, false);
+        
+    </script>
+    <style>
+    
+        fieldset input[type="radio"]:hover {
+            outline: solid 1px red;
+        }
+        
+        fieldset label:hover {
+            outline: solid 1px blue;
+        }
+    
+    </style>
+</head>
+<body>
+    <h1>uncheckable.js</h1>
+    
+    <fieldset>
+        <legend>Radio group 1 (no labels)</legend>
+        1<input type="radio" name="radio1" checked="checked" />
+        2<input type="radio" name="radio1" />
+        3<input type="radio" name="radio1" />
+    </fieldset>
+    
+    <fieldset>
+        <legend>Radio group 2 (with surrounding labels)</legend>
+        <label>1<input type="radio" name="radio2" checked="checked" /></label>
+        <label>2<input type="radio" name="radio2" /></label>
+        <label>3<input type="radio" name="radio2" /></label>
+    </fieldset>
+    
+    <fieldset>
+        <legend>Radio group 3 (with separated labels)</legend>
+        <label for="radio3-1">1</label><input id="radio3-1" type="radio" name="radio3" checked="checked" />
+        <label for="radio3-2">2</label><input id="radio3-2" type="radio" name="radio3" />
+        <label for="radio3-3">3</label><input id="radio3-3" type="radio" name="radio3" />
+    </fieldset>
+    
+    <fieldset>
+        <legend>Radio group 4 (with multiple separated labels)</legend>
+        <label for="radio4-1">1</label><input id="radio4-1" type="radio" name="radio4" checked="checked" />
+        <label for="radio4-2">2</label><input id="radio4-2" type="radio" name="radio4" />
+        <label for="radio4-3">3</label><input id="radio4-3" type="radio" name="radio4" />
+        <hr />
+        <label for="radio4-1">Extra label for 1</label><br />
+        <label for="radio4-2">Extra label for 2</label><br />
+        <label for="radio4-3">Extra label for 3</label>
+    </fieldset>
+    
+    <fieldset>
+        <legend>Radio group 5 (with surrounding labels and extra separated labels)</legend>
+        <label>1<input id="radio5-1" type="radio" name="radio5" checked="checked" /></label>
+        <label>2<input id="radio5-2" type="radio" name="radio5" /></label>
+        <label>3<input id="radio5-3" type="radio" name="radio5" /></label>
+        <hr />
+        <label for="radio5-1">Extra label for 1</label><br />
+        <label for="radio5-2">Extra label for 2</label><br />
+        <label for="radio5-3">Extra label for 3</label>
+    </fieldset>
+    
+</body>
+</html>

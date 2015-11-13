@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>indeterminable.js</title>
+    <script src="../src/indeterminable.js"></script>
+    <script>
+        
+        'use strict';
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]'),
+                indeterminates = document.querySelectorAll('input[type="checkbox"][indeterminate="indeterminate"]');
+            
+            Array.prototype.forEach.call(checkboxes, function (el) {
+                el.indeterminable = true;
+            });
+            
+            Array.prototype.forEach.call(indeterminates, function (el) {
+                el.indeterminate = true;
+            });
+            
+        }, false);
+        
+    </script>
+    <style>
+    
+        fieldset input[type="checkbox"]:hover {
+            outline: solid 1px red;
+        }
+        
+        fieldset label:hover {
+            outline: solid 1px blue;
+        }
+    
+    </style>
+</head>
+<body>
+    <h1>indeterminable.js</h1>
+    
+    <fieldset>
+        <legend>Checkbox 1 (no label)</legend>
+        1<input type="checkbox" name="checkbox1-1" checked="checked" />
+        2<input type="checkbox" name="checkbox1-2" indeterminate="indeterminate" />
+        3<input type="checkbox" name="checkbox1-3" />
+    </fieldset>
+    
+    <fieldset>
+        <legend>Checkbox 2 (with surrounding label)</legend>
+        <label>1<input type="checkbox" name="checkbox2-1" checked="checked" /></label>
+        <label>2<input type="checkbox" name="checkbox2-2" indeterminate="indeterminate" /></label>
+        <label>3<input type="checkbox" name="checkbox2-3" /></label>
+    </fieldset>
+    
+    <fieldset>
+        <legend>Checkbox 3 (with separated label)</legend>
+        <label for="checkbox3-1">1</label><input id="checkbox3-1" type="checkbox" name="checkbox3-1" checked="checked" />
+        <label for="checkbox3-2">2</label><input id="checkbox3-2" type="checkbox" name="checkbox3-2" indeterminate="indeterminate" />
+        <label for="checkbox3-3">3</label><input id="checkbox3-3" type="checkbox" name="checkbox3-3" />
+    </fieldset>
+    
+    <fieldset>
+        <legend>Checkbox 4 (with multiple separated labels)</legend>
+        <label for="checkbox4-1">1</label><input id="checkbox4-1" type="checkbox" name="checkbox4-1" checked="checked" />
+        <label for="checkbox4-2">2</label><input id="checkbox4-2" type="checkbox" name="checkbox4-2" indeterminate="indeterminate" />
+        <label for="checkbox4-3">3</label><input id="checkbox4-3" type="checkbox" name="checkbox4-3" />
+        <hr />
+        <label for="checkbox4-1">Extra label for 1</label><br />
+        <label for="checkbox4-2">Extra label for 2</label><br />
+        <label for="checkbox4-3">Extra label for 3</label>
+    </fieldset>
+    
+    <fieldset>
+        <legend>Checkbox 5 (with surrounding labels and extra separated label)</legend>
+        <label>1<input id="checkbox5-1" type="checkbox" name="checkbox5-1" checked="checked" /></label>
+        <label>2<input id="checkbox5-2" type="checkbox" name="checkbox5-2" indeterminate="indeterminate" /></label>
+        <label>3<input id="checkbox5-3" type="checkbox" name="checkbox5-3" /></label>
+        <hr />
+        <label for="checkbox5-1">Extra label for 1</label><br />
+        <label for="checkbox5-2">Extra label for 2</label><br />
+        <label for="checkbox5-3">Extra label for 3</label>
+    </fieldset>
+    
+</body>
+</html>
