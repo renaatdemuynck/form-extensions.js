@@ -3,29 +3,24 @@ $(function () {
     
     'use strict';
     
-    var fixture = $('#qunit-fixture');
-    
-    QUnit.module('indeterminable.js');
+    QUnit.module('indeterminable.js', {
+        beforeEach: function () {
+            this.checkbox = $('<input type="checkbox">');
+            $('#qunit-fixture').append(this.checkbox);
+        }
+    });
     
     QUnit.test('Regular checkbox cannot be set to "indeterminate"', function(assert) {
-        var checkbox = $('<input type="checkbox">');
-        
-        fixture.append(checkbox);
-        
-        S(checkbox).click(function () {
-            assert.equal(checkbox.prop('indeterminate'), false, 'Radio button should be checked');
+        S(this.checkbox).click(function () {
+            assert.equal(this.prop('indeterminate'), false, 'Radio button should be checked');
         });
     });
     
     QUnit.test('Left click sets unckecked checkbox to "indeterminate"', function(assert) {
-        var checkbox = $('<input type="checkbox">');
+        this.checkbox.prop('indeterminable', true);
         
-        fixture.append(checkbox);
-        
-        checkbox.prop('indeterminable', true);
-        
-        S(checkbox).click(function () {
-            assert.equal(checkbox.prop('indeterminate'), true, 'Radio button should be checked');
+        S(this.checkbox).click(function () {
+            assert.equal(this.prop('indeterminate'), true, 'Radio button should be checked');
         });
     });
     

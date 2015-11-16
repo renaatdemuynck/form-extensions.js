@@ -3,41 +3,32 @@ $(function () {
     
     'use strict';
     
-    var fixture = $('#qunit-fixture');
-    
-    QUnit.module('uncheckable.js');
+    QUnit.module('uncheckable.js', {
+        beforeEach: function () {
+            this.radio = $('<input type="radio" checked>');
+            $('#qunit-fixture').append(this.radio);
+        }
+    });
     
     QUnit.test('Regular radio button cannot be unchecked', function(assert) {
-        var radio = $('<input type="radio" checked>');
-        
-        fixture.append(radio);
-        
-        S(radio).click(function () {
-            assert.equal(radio.prop('checked'), true, 'Radio button should still be checked');
+        S(this.radio).click(function () {
+            assert.equal(this.prop('checked'), true, 'Radio button should still be checked');
         });
     });
     
     QUnit.test('Left click unchecks radio button', function(assert) {
-        var radio = $('<input type="radio" checked>');
+        this.radio.prop('uncheckable', true);
         
-        fixture.append(radio);
-        
-        radio.prop('uncheckable', true);
-        
-        S(radio).click(function () {
-            assert.equal(radio.prop('checked'), false, 'Radio button should be unchecked');
+        S(this.radio).click(function () {
+            assert.equal(this.prop('checked'), false, 'Radio button should be unchecked');
         });
     });
     
     QUnit.test('Right click does not uncheck radio button', function(assert) {
-        var radio = $('<input type="radio" checked>');
+        this.radio.prop('uncheckable', true);
         
-        fixture.append(radio);
-        
-        radio.prop('uncheckable', true);
-        
-        S(radio).rightClick(function () {
-            assert.equal(radio.prop('checked'), true, 'Radio button should not be unchecked');
+        S(this.radio).rightClick(function () {
+            assert.equal(this.prop('checked'), true, 'Radio button should not be unchecked');
         });
     });
     
