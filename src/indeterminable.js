@@ -23,8 +23,18 @@
             checkbox.removeEventListener('click', onclick, false);
         }
         
-        if (checkbox && checkbox.indeterminable && !checkbox.checked && !checkbox.indeterminate && e.which === 1) {
-            checkbox.addEventListener('click', onclick, false);
+        function onclickIndeterminate(e) {
+            checkbox.checked = true;
+            checkbox.removeEventListener('click', onclickIndeterminate, false);
+        }
+        
+        if (checkbox && e.which === 1) {
+            // Fix for IE's non-standard behaviour when clicking an indeterminate checkbox
+            if (checkbox.indeterminate) {
+                checkbox.addEventListener('click', onclickIndeterminate, false);
+            } else if (checkbox.indeterminable && !checkbox.checked) {
+                checkbox.addEventListener('click', onclick, false);
+            }
         }
     }, true);
     
