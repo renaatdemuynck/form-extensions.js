@@ -8,53 +8,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qunit/1.18.0/qunit.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FuncUnit/2.0.4/funcunit.min.js"></script>
     <script src="../src/uncheckable.js"></script>
-    <script>
-    
-        function init() {
-        
-            'use strict';
-            
-            var fixture = $('#qunit-fixture');
-            
-            QUnit.test('Regular radio button cannot be unchecked', function(assert) {
-                var radio = $('<input type="radio" checked>');
-                
-                fixture.append(radio);
-                
-                S(radio).click(function () {
-                    assert.equal(radio.prop('checked'), true, 'Radio button should still be checked!');
-                });
-            });
-            
-            QUnit.test('Left click unchecks radio button', function(assert) {
-                var radio = $('<input type="radio" checked>');
-                
-                fixture.append(radio);
-                
-                radio.prop('uncheckable', true);
-                
-                S(radio).click(function () {
-                    assert.equal(radio.prop('checked'), false, 'Radio button should be unchecked!');
-                });
-            });
-            
-            QUnit.test('Right click does not uncheck radio button', function(assert) {
-                var radio = $('<input type="radio" checked>');
-                
-                fixture.append(radio);
-                
-                radio.prop('uncheckable', true);
-                
-                S(radio).rightClick(function () {
-                    assert.equal(radio.prop('checked'), true, 'Radio button should not be unchecked!');
-                });
-            });
-            
-        }
-        
-    </script>
+    <script src="../src/indeterminable.js"></script>
+    <script src="uncheckable-test.js"></script>
+    <script src="indeterminable-test.js"></script>
 </head>
-<body onload="init();">
+<body>
     <div id="qunit"></div>
     <div id="qunit-fixture"></div>
 </body>
