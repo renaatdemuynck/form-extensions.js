@@ -16,6 +16,14 @@ $(function () {
         });
     });
     
+    QUnit.test('Left click sets indeterminate checkbox to "checked"', function(assert) {
+        this.checkbox.prop('indeterminate', true);
+        
+        S(this.checkbox).click(function () {
+            assert.equal(this.prop('checked'), true, 'Checkbox should be checked, according to W3C spec');
+        });
+    });
+    
     QUnit.test('Left click sets unckecked checkbox to "indeterminate"', function(assert) {
         this.checkbox.prop('indeterminable', true);
         
